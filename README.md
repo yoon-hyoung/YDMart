@@ -5,10 +5,12 @@ And work with database (jsp and mysql)
 
 shopping mall function
 
-1.member function
+1. member function
 
-2.item function
+2. item function
 
-3.shopping cart function
+3. shopping cart function
 
-4.manager function
+4. purchase function
+
+5. manager function
