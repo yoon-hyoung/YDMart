@@ -21,7 +21,7 @@
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
     <div class="w3-rest">
-      <input class="w3-input w3-border" name="Password" type="text" placeholder="Password">
+      <input class="w3-input w3-border" name="Password" type="password" placeholder="Password">
     </div>
 </div>
 
