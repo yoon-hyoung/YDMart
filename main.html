@@ -25,31 +25,31 @@
                                             과일/견과 <i class="fa fa-caret-down"></i>
                                         </a>
                                         <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-                                            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>감/곶감</a>
-                                            <a href="#" class="w3-bar-item w3-button">감귤/한라봉</a>
-                                            <a href="#" class="w3-bar-item w3-button">사과/배</a>
+                                            <a href="main.html" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>감/곶감</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">감귤/한라봉</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">사과/배</a>
                                         </div>
                                         
                                         <a onclick="myAccFunc2()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn2">
                                             채소 <i class="fa fa-caret-down"></i>
                                         </a>
                                         <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-                                            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>고구마/호박/감자</a>
-                                            <a href="#" class="w3-bar-item w3-button">두부/콩나물</a>
-                                            <a href="#" class="w3-bar-item w3-button">샐러드/새싹/무순/어린잎/드레싱</a>
+                                            <a href="main.html" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>고구마/호박/감자</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">두부/콩나물</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">샐러드/새싹/무순/어린잎/드레싱</a>
                                         </div>
                                         
                                         <a onclick="myAccFunc3()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn3">
                                             수산물/해산물/건어물 <i class="fa fa-caret-down"></i>
                                         </a>
                                         <div id="demoAcc3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-                                            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>김</a>
-                                            <a href="#" class="w3-bar-item w3-button">멸치/ 천연조미료</a>
-                                            <a href="#" class="w3-bar-item w3-button">생선회</a>
+                                            <a href="main.html" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>김</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">멸치/ 천연조미료</a>
+                                            <a href="main.html" class="w3-bar-item w3-button">생선회</a>
                                         </div>
                                     </div>
-                                    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('private').style.display='block'">회원정보 수정</a>
-                                    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('password').style.display='block'">비밀번호 수정</a>
+                                    <a href="change_info.html" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('private').style.display='block'">회원정보 수정</a>
+                                    <a href="change_pw.html" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('password').style.display='block'">비밀번호 수정</a>
                                 </nav>
                                 
                                 <!-- Top menu on small screens -->
@@ -71,8 +71,7 @@
                                     <header class="w3-container w3-xlarge">
                                         <p class="w3-left">물품</p>
                                         <p class="w3-right">
-                                        <i class="fa fa-shopping-cart w3-margin-right"></i>
-                                        <i class="fa fa-search"></i>
+                                        <i class="fa fa-shopping-cart w3-margin-right"><a href="cart.html">장바구니</a></i>
                                         </p>
                                     </header>
                                     
@@ -104,8 +103,10 @@
                                             <td>...</td>
                                         </tr>
                                     </table>
-                                    
-                                    <div class="w3-container w3-text-grey" id="jeans">
+                                  </div>
+                                 
+                                 
+                                  <div class="w3-container w3-text-grey" id="jeans">
                                         <p>저희 가게의 상품입니다.</p>
                                     </div>
                                     
@@ -196,38 +197,6 @@
                                         </div>
                                     </div>
                                     
-                                    
-                                    
-                                    
-                                    <!-- End page content -->
-                                </div>
-                                
-                                <!-- 회원정보 수정 -->
-                                <div id="private" class="w3-modal">
-                                    <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
-                                        <div class="w3-container w3-white w3-center">
-                                            <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-                                            <h2 class="w3-wide">회원정보 수정</h2>
-                                            <p>비밀번호를 입력하세요.</p>
-                                            <p><input class="w3-input w3-border" type="text" placeholder="Enter password"></p>
-                                                <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('private').style.display='none'">제출</button>
-                                                </div>
-                                    </div>
-                                </div>
-                                
-                                
-                                <!-- 비밀번호 수정 -->
-                                <div id="password" class="w3-modal">
-                                    <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
-                                        <div class="w3-container w3-white w3-center">
-                                            <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-                                            <h2 class="w3-wide">비밀번호 수정</h2>
-                                            <p>새로운 비밀번호를 입력하세요.</p>
-                                            <p><input class="w3-input w3-border" type="text" placeholder="Enter password"></p>
-                                                <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('password').style.display='none'">제출</button>
-                                                </div>
-                                    </div>
-                                </div>
                                 
                                 <script>
                                     //상품 검색
@@ -305,4 +274,3 @@
                                 
                             </body>
 </html>
-
