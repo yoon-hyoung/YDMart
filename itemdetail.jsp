@@ -105,11 +105,11 @@ int item = 1;
   </div>
   
 <!--뒤로가기-->
-<a href="tryw3css_examples_sauvignon_blanc.htm"><span class="w3-left w3-xxlarge">« 뒤로가기</span></a>
+<a href="main.html"><span class="w3-left w3-xxlarge">« 뒤로가기</span></a>
 
 
 <!--상품장바구니에 넣기-->
-<a href="tryw3css_examples_sauvignon_blanc.htm"><span class="w3-right w3-xxlarge">장바구니에 넣기 \/</span></a>
+<a href="cart.html"><span class="w3-right w3-xxlarge">장바구니에 넣기 \/</span></a>
 
 </div>
 </body>
