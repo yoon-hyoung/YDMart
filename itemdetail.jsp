@@ -102,11 +102,11 @@ int item = 1;
   </table>
   </div>
   
-<!뒤로가기>
+<!--뒤로가기>
 <a href="tryw3css_examples_sauvignon_blanc.htm"><span class="w3-left w3-xxlarge">« 뒤로가기</span></a>
 
 
-<!상품장바구니에 넣기>
+<!--상품장바구니에 넣기>
 <a href="tryw3css_examples_sauvignon_blanc.htm"><span class="w3-right w3-xxlarge">장바구니에 넣기 \/</span></a>
 
 </div>
