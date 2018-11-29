@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-
+	
+<!--서버연결-->
 <% 
 Connection con = null;
 String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
@@ -81,6 +82,7 @@ int item = 1;
 		}
 %>
 
+<!--디비에서 받아온 내용 출력-->
 <div class="w3-container w3-teal w3-margin-bottom">
 <h1><% out.print(name); %></h1>
 </div>
