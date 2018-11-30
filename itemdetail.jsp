@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.sql.*" %>
 <%@ page import ="java.lang.Integer" %>
+
 <!DOCTYPE html>
 <html>
 <title>상품페이지</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" >
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-	
-<!--서버연결-->
+
 <% 
-Connection con = null;
-String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
+	Connection con = null;
+	String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			System.out.println("after forName");
@@ -22,12 +22,20 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		} catch(Exception e) {
 			System.out.println("DB load fail" + e.toString());
 		}
+		
+	//받아오는 값으로 수정 **int item = (int)request.getAttribute("I_NUM");
+	//item = request.getParameter(ITEM);
+	String item = "1"; 
+	 
+	/*get ID*/
+	String Id = null;
+	Id = (String)session.getAttribute("ID");
+	//request.setAttribute("I_NUM", item);
 
-
-int item = 1;
-
-//item = request.getParameter(ITEM);
-
+	if (Id == null || Id.equals("")){
+		Id = "1";
+	}
+	
 	Statement stmt = con.createStatement();
 	String sql = "select * from ITEM where I_NUM =" + item;
 	stmt.executeQuery(sql);
@@ -37,7 +45,7 @@ int item = 1;
 
 	int cate = 1, subcate = 1;
 	String name = null, price = null, importer = null, exp_date = null, madein = null, total = null;
-		//item info
+		//item info from db 
 		while(rs.next()) {
 			cate = rs.getInt("CATEGORY");
 			//out.print(cate);
@@ -81,8 +89,9 @@ int item = 1;
 			subcatname = rs.getString(1);
 		}
 %>
+<form action = "inputCart.jsp" method = "post">
 
-<!--디비에서 받아온 내용 출력-->
+
 <div class="w3-container w3-teal w3-margin-bottom">
 <h1><% out.print(name); %></h1>
 </div>
@@ -90,10 +99,9 @@ int item = 1;
 <div class="w3-row-padding ">
 
 <div class="">
- <img src="img_chardonnay.jpg" style="width:100%">
    <h2>상품</h2>
   <table class="w3-table w3-striped w3-bordered w3-border">
-  <thead class="w3-teal"><th style="width:%"><% out.print("cat : " + catname + " / " + subcatname ); %></th></thead>
+  <thead class="w3-teal"><th style="width:%"><% out.print("category : " + catname + " / " + subcatname ); %></th></thead>
   <tr><td style="width:30%">
   NAME</td><td><% out.print(name); %></td></tr>
   <tr><td>PRICE</td><td><% out.print(price); %></td></tr>
@@ -104,12 +112,13 @@ int item = 1;
   </table>
   </div>
   
-<!--뒤로가기-->
-<a href="main.html"><span class="w3-left w3-xxlarge">« 뒤로가기</span></a>
+<!뒤로가기>
+<a href="main.jsp"><span class="w3-left w3-xxlarge">« Go Back</span></a>
 
-
-<!--상품장바구니에 넣기-->
-<a href="cart.html"><span class="w3-right w3-xxlarge">장바구니에 넣기 \/</span></a>
+<!상품장바구니에 넣기>
+<input type=hidden name="Item" value="<%=item%>"></input>
+<a href="inputCart.jsp"><span><input type = submit class="w3-right w3-xxlarge" value = "Input it in my Cart √"> </span></a>
+</form>
 
 </div>
 </body>

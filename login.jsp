@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language ="java" import ="java.text.*,java.sql.*" %>
 <!DOCTYPE html>
@@ -48,6 +48,7 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	
 	if(rs.next()) {
 		//login success
+		session.setAttribute("ID",id);
 		out.println("<script>alert('LoginSuccess'); location.href='main.jsp'</script>");
 	}
 	else {

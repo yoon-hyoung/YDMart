@@ -28,6 +28,12 @@
 
 <p class="w3-center">
 <button class="w3-button w3-section w3-blue w3-ripple"> Send </button>
+<form>
+<input class="w3-button w3-section w3-blue w3-ripple" type="button" value="Join us" onclick="location.href='signup_input.jsp'" />
+</form>
+
+
+
 </p>
 </form>
 
