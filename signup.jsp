@@ -28,16 +28,12 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		String query = "INSERT INTO CUSTOMER (ID, PW, ZIPCODE, NAME, PHONENUM, CITY, GENDER, AGE, JOB)" 
 				+" VALUES( ";
 		
-		//값 받아오기 
+		//get value
 		String id = request.getParameter("Id");
 		query += "'"+id+"',";
 		String pw = request.getParameter("Password");
 		query += "'"+pw+"'";
 		String zip = request.getParameter("Zipcode");
-		if(zip == "") {
-			query += ",null";
-		}
-		else
 			query += ","+zip;
 		String name = request.getParameter("Name");
 		query += ",'"+name+"'";
@@ -47,9 +43,6 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		else
 			query += ",'"+phone+"'";
 		String city = request.getParameter("City");
-		if(city == "")
-			query += ",null";
-		else
 			query += ",'"+city+"'";
 		String age = request.getParameter("Age");
 		if(age == "")
@@ -70,6 +63,7 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		query += ");";
 		
 		/*
+		input data check
 		out.println(id);
 		out.println(pw);
 		out.println(zip);
@@ -88,13 +82,29 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		if(rs.next()) {
 			out.println("<script>alert('ID duplicate'); location.href='signup_input.jsp'</script>");
 		}
-		else if(id =="" || pw == "" || name == "" || phone == "")
+		else if(id =="" || pw == "" || name == "" || phone == "" || zip == "" || city == "")
 		{
 			out.println("<script>alert('Input essential info'); location.href='signup_input.jsp'</script>");
 		}
 		else {
-		out.println(query);
+			/*sign-up success*/
 		Statement stmt = conn.prepareStatement(query);
+		stmt.executeUpdate(query);
+		
+			/*Get C_NUM*/
+		stmt = conn.createStatement();
+		String sql1 = "select C_NUM FROM CUSTOMER WHERE ID = '" + id +"'";
+		stmt.executeQuery(sql1);
+		rs = null;
+		rs = stmt.executeQuery(sql1);
+
+		int c_num = 0;
+		if(rs.next()) {
+			c_num = rs.getInt(1);
+		}
+		
+		/*make cart*/
+		query = "Insert into SHOPPINGBAG values (" + c_num  +", 0)";
 		stmt.executeUpdate(query);
 		
 		out.println("<script>location.href='signupSuccess.jsp'</script>");

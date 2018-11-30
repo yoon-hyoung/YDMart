@@ -26,6 +26,10 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	String pw2 = request.getParameter("Password3");
 	String id = request.getParameter("Id");
 	
+	if(pw1.equals("") || pw1 == null || pw2.equals("") || pw2 == null) {
+		out.println("<script>alert('Input new password'); location.href='pwChange_input.jsp'</script>");
+
+	}
 	if(!pw1.equals(pw2)) {
 		out.println("<script>alert('Password not match'); location.href='pwChange_input.jsp'</script>");
 	}
