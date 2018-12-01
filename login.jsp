@@ -49,7 +49,10 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	if(rs.next()) {
 		//login success
 		session.setAttribute("ID",id);
-		out.println("<script>alert('LoginSuccess'); location.href='main.jsp'</script>");
+		if(id.equals("SYD")) 
+			out.println("<script>alert('Manager LoginSuccess'); location.href='manager.jsp'</script>");
+		else
+			out.println("<script>alert('LoginSuccess'); location.href='main.jsp'</script>");
 	}
 	else {
 		//login fail
