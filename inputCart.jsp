@@ -55,18 +55,26 @@ int c_num = 0;
 	
 	String sql2 = "SELECT COUNT(SH_NUM) FROM SH_ITEML WHERE SH_NUM = " + c_num;
 
-	stmt.executeQuery(sql2);
-
 	rs = stmt.executeQuery(sql2);
 	int num = 1;
 	if(rs.next()) {
 		num = rs.getInt(1);
 	}
 	
+	/*get I_NUM*/
+	sql2 = "select I_NUM from ITEM WHERE NAME = '" + item + "'";
+	rs = stmt.executeQuery(sql2);
+	int inum = 0;
+	if(rs.next()) {
+		inum = rs.getInt(1);
+	}
+	
+	
 		/*insert item*/
 	sql2 = null;
-	sql2 = "Insert Into SH_ITEML VALUES(" + c_num +","+ item +","+ (++num) +");";	
+	sql2 = "Insert Into SH_ITEML VALUES(" + c_num +","+ inum +","+ (++num) +");";	
 
+	//out.println(sql2);
 	stmt = con.prepareStatement(sql2);
 	stmt.executeUpdate(sql2);
 	
