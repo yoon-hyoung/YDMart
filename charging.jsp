@@ -2,15 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.sql.*" %>
 <%@ page import ="java.lang.Integer, java.util.ArrayList" %>
-<!DOCTYPE html>
+
+<script>
+fuction push()
+	{alert("Purchase Success!"); location.href='main.jsp'
+}
+</script>
+
+<!DOCTYPE HTML5>
 <html>
-<title>장바구니</title>
+<title>Purchase</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-<form action="cart.jsp" class="w3-container w3-card-4" method = "post">
 
- <h2>Charging</h2>
+<form action="buying.jsp" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<h2 class="w3-center">Purchase Item</h2>
+
 
 <%
 	/*connect to DB*/
@@ -32,6 +41,10 @@
 		  if(Id == null || Id == "" )
 			  Id = "gi6";
 		  
+			/*get item information*/
+			String [] itemList = null;
+			itemList = request.getParameterValues("item");
+		  
 			/*GET C_NUM from CUSTOMER TABLE*/
 			Statement stmt = con.createStatement();
 			String sql1 = "select C_NUM FROM CUSTOMER WHERE ID = '" + Id +"'";
@@ -45,17 +58,55 @@
 				c_num = rs.getInt(1);
 			}
 			
-			/*get checked I_NUM*/
-			String [] itemList = request.getParameterValues("item");		
-			for(int i = 0; i < itemList.length; i++) {
-				out.print(itemList[i]);
+			if (itemList == null){
+				out.println("<script>alert('Select items !'); location.href='cart.jsp'</script>");
 			}
-%>
- 
- 
- <a href = "cart.jsp" ><input type = "submit" value = "Charging"></input></a>
- 
-</form>
+			else{
+				out.println("<table class='w3-table-all w3-margin-top' id='myTable'> <tr>"	
+		  			+  " <th style='width:10%;'>NUM</th> <th style='width:45%;'>NAME</th> <th style='width:45%;'>PRICE</th>");
+			
+				for(int i= 0; i < itemList.length; i++) {
+					sql1 = "select NAME,PRICE from ITEM where I_NUM = " + itemList[i];
+					stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql1);
+				  	while(rs.next()) {
+						  	out.println("<tr> <td>"+(i+1)+ "</td><td>"+ rs.getString(1) +"</td><td>" + rs.getInt(2)  + "</td></tr>");
+					}
+				}
+			}
+			%>	
+</table>
 
+<h2 class="w3-center">Deliver Address</h2>
+
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="Name" type="text" placeholder="Name">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="Zipcode" type="text" placeholder="Zipcode">
+    </div>
+</div>
+
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="phone" type="text" placeholder="Phone">
+    </div>
+</div>
+<input type = "submit" value = "Charging"></input>
+
+<p class="w3-center">
+</p>
+</form>
 </body>
 </html> 
+
+
