@@ -45,9 +45,11 @@
 	rs = stmt.executeQuery(sql);
 
 	int cate = 1, subcate = 1;
+	int inum = 0;
 	String name = null, price = null, importer = null, exp_date = null, madein = null, total = null;
 		//item info from db 
 		while(rs.next()) {
+			inum = rs.getInt("I_NUM");
 			cate = rs.getInt("CATEGORY");
 			//out.print(cate);
 			subcate = rs.getInt("SUB_CAT");
@@ -92,6 +94,22 @@
 			subcatname = rs.getString(1);
 		}
 		
+		/*get producer information*/
+		sql3 = "select * from PRODUCER_LOCATION WHERE I_NUM = " + inum;
+	
+		
+		rs = null;
+		rs = stmt.executeQuery(sql3);
+		
+		String p = null;
+		String s = null;
+		String na = null;
+		
+		while(rs.next()) {
+			p = rs.getString(2);
+			s = rs.getString(3);
+			na = rs.getString(4);
+		}
 		
 %>
 <title><%=name %></title>
@@ -107,19 +125,22 @@
 
 <form action = "inputCart.jsp" method = "post">
 
-<div class="w3-container w3-teal w3-margin-bottom">
+<hr><br/><br/>
 <h1><% out.print(name); %></h1>
+<font size="1em"><hr><br/></font>
 </div>
 
 <div class="w3-row-padding ">
 
+
+<!-- item information -->
 <div class="">
    <h2>Item Information</h2>
   <table class="w3-table w3-striped w3-bordered w3-border">
   <thead class="w3-teal"><th style="width:10%"><% out.print("category : " + catname + " / " + subcatname ); %></th></thead>
   <tr><td style="width:30%">
   NAME</td><td><% out.print(name); %></td></tr>
-  <tr><td>PRICE</td><td><% out.print(price); %></td></tr>
+  <tr><td>PRICE</td><td><% out.print(price + "&nbsp;(won)"); %></td></tr>
   <tr><td>IMPORTER</td><td><% 
  /* if(importer.equals("null") || importer == null || importer.equals("")) 
 	  out.println("no importer");
@@ -131,7 +152,21 @@
   <tr><td>MADE_IN</td><td><% out.print(madein); %></td></tr>
   </table>
   </div>
-
+  
+  
+  <br/>
+  
+  <!-- producer information -->
+<div class="">
+   <h2>Producer Information</h2>
+  <table class="w3-table w3-striped w3-bordered w3-border">
+  <tr><td style="width:30%">
+  NAME</td><td><% out.print(na); %></td></tr>
+  <tr><td>STATE</td><td><% out.print(s); %></td></tr>
+  <tr><td>PHONE NUM</td><td><% out.println(p);%></td></tr>
+  </table>
+  </div>
+  <br/><br/>
   
 <!뒤로가기>
 <a href="main.jsp"><span class="w3-left w3-large">« Go Back</span></a>
