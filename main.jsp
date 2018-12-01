@@ -195,9 +195,6 @@
                                 // Click on the cat3 link on page load to open the accordion for demo purposes
                                 document.getElementById("myBtn3").click();
                                 
-                                
-                                
-                                
                                 // Script to open and close sidebar
                                 function w3_open() {
                                     document.getElementById("mySidebar").style.display = "block";
