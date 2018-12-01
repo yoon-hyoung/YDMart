@@ -25,7 +25,7 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		Statement pstmt = conn.createStatement();
 		ResultSet rs = null;
 		
-		String query = "INSERT INTO CUSTOMER (ID, PW, ZIPCODE, NAME, PHONENUM, CITY, GENDER, AGE, JOB)" 
+		String query = "INSERT INTO CUSTOMER (ID, PW, ZIPCODE, NAME, PHONENUM, CITY, AGE, GENDER, JOB)" 
 				+" VALUES( ";
 		
 		//get value
