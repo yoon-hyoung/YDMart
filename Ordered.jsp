@@ -4,17 +4,17 @@
 <%@ page import ="java.lang.Integer, java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
-<title>CART</title>
+<title>Ordered List</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-<form action="charging.jsp" class="w3-container w3-card-4" method = "post">
-  <!-- Top menu on small screens -->
+           <form action = "Ordered_Detail.jsp" method = "post">    
+             
+                                <!-- Top menu on small screens -->
                                 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
                                     <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
                                     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-                                </header>  
-
+                                </header>                                                                        
 <%
 //connect to DB
 	Connection con = null;
@@ -34,19 +34,23 @@
 			  Id = (String)session.getAttribute("ID");
 		  if(Id == null || Id == "" )
 			  Id = "gi6";
-		  %>
-		  <br/><br/>
+		  %><br/><br/>
 		  <bt/><br/><br/>
 		  <bt/>
-		  <h2><%=Id %>'s CART</h2>
-		  <hr></hr>
-		  
-		 *** Check what you want to buy ! ***</br></br>
-		 Unchecked items are out of stock now...&nbsp;&nbsp;:<<br>
-		 		  <hr></hr>
-		 <br>
+		  <h2><%=Id %>'s Ordered List</h2>
+  <br/>
+  <table class="w3-table-all w3-margin-top" id="myTable">
+ <tr>
+ 	   <th style="width:5%;">NUM</th>
+       <th style="width:20%;">ORDER_DATE</th>
+       <th style="width:20%;">STATE</th>
+       <th style="width:20%;">CITY</th>
+       <th style="width:20%;">ZIPCODE</th>
+       <th style="width:15%;">DETAIL</th>
+
 		  <% 
-		/*GET C_NUM from CUSTOMER TABLE*/
+		
+			/*GET C_NUM from CUSTOMER TABLE*/
 			Statement stmt = con.createStatement();
 			String sql1 = "select C_NUM FROM CUSTOMER WHERE ID = '" + Id +"'";
 			stmt.executeQuery(sql1);
@@ -59,47 +63,25 @@
 				c_num = rs.getInt(1);
 			}
 			
-			sql1 = "select I_NUM from SH_ITEML where SH_NUM = " + c_num;	
-			
-			rs = null;
-			rs = stmt.executeQuery(sql1);
-
-			ArrayList<Integer> list = new ArrayList<Integer>();
-			
-			int count = 0;
-			int temp = 0;
+			String sql = "select ORDER_DATE,STATE,CITY,ZIPCODE, O_NUM from ORDERED where CUS_NUM =" + c_num ;
+			rs = stmt.executeQuery(sql);
+			int count = 1;
 			while(rs.next()) {
-				//String sql2 = "select NAME, PRICE from ITEM where I_NUM = " + rs.getInt(count++);
-				temp = rs.getInt(1);
-				list.add(temp);
+				String date = rs.getString(1);
+				String state = rs.getString(2);
+				String city = rs.getString(3);
+				String zip = rs.getString(4);
+				String num = rs.getString(5);
+
+				out.println("<tr> <td>"+count+ "</td><td>" +date+"</td><td>" +state + "</td><td>" + city + "</td><td>" + zip 
+						+ "</td><td><input type = 'submit' value = '"+num+"' name = 'num'> </td></tr>");
 				count++;
 			}
-			
-			String sql2 = null;
-		//	sql2 = "select NAME, PRICE from ITEM where I_NUM = " + list.get(0);
-		
-			for(int i = 0; i < count; i++) {
-				sql2 = "select NAME, PRICE, TOTAL_STOCK from ITEM where I_NUM = " + list.get(i);
-				rs = stmt.executeQuery(sql2);
-				while(rs.next()) {
-					String name = rs.getString(1);
-					String price = rs.getString(2);
-					if(rs.getInt(3) == 0) {
-						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won)</label></p>");
-					}
-					else {
-						out.println("<p> <input class='w3-radio' type='checkbox' name='item'"
-					 	+ " value='"+ list.get(i) +"' checked><label>" + name + " &nbsp;&nbsp; "+ price+" (won)</label></p>");
-					}
-				}
-			}
-					
+				
 %>
- 
- 
- <a href = "charging.jsp" ><input type = "submit" value = "Orderd"></input></a>
- 
-</form>
+                                           
+</table>
+</form> 
 
 </body>
-</html> 
+</html>

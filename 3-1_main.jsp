@@ -79,10 +79,11 @@
                               			</div>
                                     
                                     <!-- link other thing -->
-                                    <a href="changeInfo_input.jsp" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('private').style.display='block'">Change Information</a>
-                                    <a href="pwChange_input.jsp" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('password').style.display='block'">Change Password</a>
-                              		<a href="logout.jsp" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('password').style.display='block'">logout</a>
-                              		
+                                    <a href="changeInfo_input.jsp" class="w3-bar-item w3-button w3-padding" >Change Information</a>
+                                    <a href="pwChange_input.jsp" class="w3-bar-item w3-button w3-padding" >Change Password</a>
+                              		<a href="Ordered.jsp" class="w3-bar-item w3-button w3-padding" >Ordered list</a>
+                              		<a href="cart.jsp" class="w3-bar-item w3-button w3-padding" >Cart</a>
+                               		<a href="logout.jsp" class="w3-bar-item w3-button w3-padding" >logout</a>
                                 </nav>
                                 
                                 <!-- Top menu on small screens -->
@@ -103,10 +104,6 @@
                                     <!-- Top header -->
                                     <header class="w3-container w3-xlarge">
                                         <p class="w3-left">Item</p>
-                                        <p class="w3-right">
-                                        <i class="fa fa-shopping-cart w3-margin-right"></i>
-                                        <i class="fa fa-search"></i>
-                                        </p>
                                     </header>
                                     
                                     <!-- Search && show item list section-->

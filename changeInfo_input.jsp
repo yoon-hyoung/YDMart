@@ -54,59 +54,55 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	
 %>
  
-<div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-    <div class="w3-rest">
+
     	
-      <input class="w3-input w3-border" name="Id" type="text" value=<%out.println(id);%> placeholder="Enter your Id">
-    </div>
-</div>
-
+      <input class="w3-input w3-border" name="Id" type = "hidden" value=<%out.println(id);%>>
+ 
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">zipcode</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Zipcode" type="text" value=<%out.println(zip);%>  placeholder="New Zipcode">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">name</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Name" type="text" value=<%out.println(name);%>  placeholder="New Name">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">phone</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Phone" type="text" value=<%out.println(phone);%>  placeholder="New Phone">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">city</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="City" type="text" value=<%out.println(city);%>  placeholder="New City">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">gender</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Gender" type="text" value=<%out.println(gen);%>  placeholder="New Gender(F/M)">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">age</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Age" type="text" value=<%out.println(age);%>  placeholder="New Age">
     </div>
 </div>
 
 <div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+  <div class="w3-col" style="width:50px"><i class="w3-large fa">job</i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="Job" type="text" value=<%out.println(job);%>  placeholder="New Job">
     </div>
