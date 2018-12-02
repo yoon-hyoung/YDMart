@@ -14,11 +14,6 @@
 String Id = null;
 Id = (String)session.getAttribute("ID");
 
-if (Id == null || Id.equals("")){
-	Id = "1";
-}
-
-
 int c_num = 0;
 
 	Connection con = null;
@@ -26,10 +21,7 @@ int c_num = 0;
 	
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			System.out.println("after forName");
 			con = DriverManager.getConnection(url, "root","ekdms1234");
-			System.out.println("DBms connection success");
-			System.out.println("DB load success");
 		} catch(Exception e) {
 			System.out.println("DB load fail" + e.toString());
 		}
@@ -46,6 +38,7 @@ int c_num = 0;
 		//GET C_NUM from CUSTOMER TABLE
 	Statement stmt = con.createStatement();
 	String sql1 = "select C_NUM FROM CUSTOMER WHERE ID = '" + Id +"'";
+	System.out.println(sql1);
 	stmt.executeQuery(sql1);
 	ResultSet rs = null;
 	rs = stmt.executeQuery(sql1);
@@ -54,12 +47,12 @@ int c_num = 0;
 		c_num = rs.getInt(1);
 	}
 	
-	
-	
 	/*get SH_ITEML count*/
 	rs = null;
 	
 	String sql2 = "SELECT COUNT(*) FROM SH_ITEML WHERE SH_NUM = " + c_num;
+	System.out.println(sql2);
+
 	rs = stmt.executeQuery(sql2);
 	int num = 1;
 	if(rs.next()) {
@@ -68,6 +61,8 @@ int c_num = 0;
 	
 	/*get I_NUM*/
 	sql2 = "select I_NUM from ITEM WHERE NAME = '" + item + "'";
+	System.out.println(sql2);
+
 	rs = stmt.executeQuery(sql2);
 	int inum = 0;
 	if(rs.next()) {
@@ -78,6 +73,7 @@ int c_num = 0;
 	/*insert item*/	
 	sql2 = null;
 	sql2 = "Insert Into SH_ITEML VALUES(" + c_num +","+ inum +","+ (++num) +");";	
+	System.out.println(sql2);
 
 	stmt = con.prepareStatement(sql2);
 	stmt.executeUpdate(sql2);

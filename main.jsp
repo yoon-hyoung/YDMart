@@ -115,7 +115,7 @@
                                             <th style="width:40%;">Price</th>
                                             
                                             <%
-                                            sql = "select NAME, PRICE, I_NUM from ITEM";
+                                            sql = "select NAME, PRICE, I_NUM from ITEM ORDER BY NAME";
                                             stmt = con.createStatement();
                                             rs = stmt.executeQuery(sql);
                             				while(rs.next()) {

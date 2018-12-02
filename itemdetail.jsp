@@ -37,6 +37,7 @@
 	Statement st = con.createStatement();
 	
 	Statement stmt = con.createStatement();
+	/*get item iformation*/
 	String sql = "select * from ITEM where NAME = '" + item +"'";
 		
 	stmt.executeQuery(sql);

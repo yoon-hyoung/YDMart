@@ -76,7 +76,7 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 				}
 			}
 			
-			//out.println("<script>alert('Item delete success !'); location.href='cart.jsp'</script>");
+			out.println("<script>alert('Item delete success !'); location.href='cart.jsp'</script>");
 
 				
 %>

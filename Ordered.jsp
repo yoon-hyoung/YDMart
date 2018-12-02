@@ -63,7 +63,7 @@
 				c_num = rs.getInt(1);
 			}
 			
-			String sql = "select ORDER_DATE,STATE,CITY,ZIPCODE, O_NUM from ORDERED where CUS_NUM =" + c_num ;
+			String sql = "select ORDER_DATE,STATE,CITY,ZIPCODE, O_NUM from ORDERED where CUS_NUM =" + c_num + " ORDER BY O_NUM" ;
 			rs = stmt.executeQuery(sql);
 			int count = 1;
 			while(rs.next()) {

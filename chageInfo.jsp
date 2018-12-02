@@ -45,7 +45,6 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	conn.close();
 	
 	out.println("<script>alert('Personal Information successfully Changed !'); location.href='main.jsp'</script>");
-
 	
 %>
 
