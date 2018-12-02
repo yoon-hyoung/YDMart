@@ -84,14 +84,16 @@
 				rs = stmt.executeQuery(sql2);
 				while(rs.next()) {
 					String name = rs.getString(1);
-					String price = rs.getString(2);		
+					String price = rs.getString(2);	
 					if(rs.getInt(3) < nlist.get(i)) {
 						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"+ nlist.get(i)+"</label></p>");
 					}
 					else {
-						out.println("<p> <input class='w3-radio' type='checkbox' name='item'"
-					 	+ " value='"+ list.get(i) +"' checked><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"
-						+ nlist.get(i) + "</label></p>");
+					%>
+						<p> <input class="w3-radio" type="checkbox" name="item" value="<%=list.get(i)%>"  checked> 
+						<a href = "itemdetail.jsp?item=<%=name%>"><label><%=name%></a> &nbsp;&nbsp;<%=price%> (won) &nbsp;&nbsp;
+						<%=nlist.get(i)%></label></p>
+					<% 
 					}
 				}
 			}
