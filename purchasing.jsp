@@ -128,7 +128,7 @@ function check() {
        <option value="Incheon">1</option>
        <option value="Gyeongi">2</option>
        <option value="Gwagnwon">3</option>
-       <option value="Chungchugn">4</option>
+       <option value="Choongchugn">4</option>
        <option value="Daegu">5</option>
        <option value="Ulsan">6</option>
        <option value="Gyeongsang">7</option>
