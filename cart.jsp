@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-<form action="charging.jsp" class="w3-container w3-card-4" method = "post">
+<form action="purchasing.jsp" class="w3-container w3-card-4" method = "post">
   <!-- Top menu on small screens -->
                   <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
                   <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
@@ -85,7 +85,7 @@
 				while(rs.next()) {
 					String name = rs.getString(1);
 					String price = rs.getString(2);		
-					if(rs.getInt(3) == 0) {
+					if(rs.getInt(3) < nlist.get(i)) {
 						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"+ nlist.get(i)+"</label></p>");
 					}
 					else {
@@ -97,7 +97,7 @@
 			}
 					
 %>
- <a href = "charging.jsp" ><input type = "submit" value = "Order"></input></a>
+ <a href = "purchasing.jsp" ><input type = "submit" value = "Order"></input></a>
 </form>
 
 <form action = "change_cart.jsp" method = "post">
