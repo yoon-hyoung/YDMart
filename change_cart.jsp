@@ -2,14 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.sql.*" %>
 <%@ page import ="java.lang.Integer, java.util.ArrayList" %>
-
 <!DOCTYPE html>
 <html>
-<title>CART</title>
+<title>CART ITEM DELETE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-<form action="charging.jsp" class="w3-container w3-card-4" method = "post">
+<form action="cart_delete_complete.jsp" class="w3-container w3-card-4" method = "post">
   <!-- Top menu on small screens -->
                   <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
                   <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
@@ -42,8 +41,7 @@
 		  <h2><%=Id %>'s CART</h2>
 		  <hr></hr>
 		  
-		 *** Check what you want to buy ! ***</br></br>
-		 Unchecked items are out of stock now...&nbsp;&nbsp;:<<br>
+		 *** Check what you want to delete ! ***</br></br>
 		 		  <hr></hr>
 		 <br>
 		  <% 
@@ -76,32 +74,24 @@
 				nlist.add(rs.getInt(2));
 				count++;
 			}
-			
+		
 			String sql2 = null;
+		//	sql2 = "select NAME, PRICE from ITEM where I_NUM = " + list.get(0);
 		
 			for(int i = 0; i < count; i++) {
-				sql2 = "select NAME, PRICE, TOTAL_STOCK, COUNT(NAME) from ITEM where I_NUM = " + list.get(i);
+				sql2 = "select NAME, PRICE from ITEM where I_NUM = " + list.get(i) + " ORDER BY NAME";
 				rs = stmt.executeQuery(sql2);
 				while(rs.next()) {
 					String name = rs.getString(1);
-					String price = rs.getString(2);		
-					if(rs.getInt(3) == 0) {
-						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"+ nlist.get(i)+"</label></p>");
-					}
-					else {
-						out.println("<p> <input class='w3-radio' type='checkbox' name='item'"
-					 	+ " value='"+ list.get(i) +"' checked><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"
-						+ nlist.get(i) + "</label></p>");
-					}
+					String price = rs.getString(2);
+					out.println("<p> <input class='w3-radio' type='checkbox' name='item'"
+					 	+ " value='"+ list.get(i) +"' unchecked><label>" + name + " &nbsp;&nbsp; "
+						+ price+" (won)&nbsp;&nbsp;" + nlist.get(i) + "</label></p>");
 				}
 			}
 					
 %>
- <a href = "charging.jsp" ><input type = "submit" value = "Order"></input></a>
-</form>
-
-<form action = "change_cart.jsp" method = "post">
-<a href = "change_cart.jsp" ><input type = "submit" value = "Delete Item"></input></a>
+ <a href = "cart_delete_complete.jsp" ><input type = "submit" value = Complete></input></a>
 </form>
 
 </body>
