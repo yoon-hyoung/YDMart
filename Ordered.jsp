@@ -39,11 +39,12 @@
 		  <bt/>
 		  <h2><%=Id %>'s Ordered List</h2>
   <br/>
+  
+  <!-- ************************************************************************************** -->
   <table class="w3-table-all w3-margin-top" id="myTable">
  <tr>
  	   <th style="width:5%;">NUM</th>
        <th style="width:20%;">ORDER_DATE</th>
-       <th style="width:20%;">STATE</th>
        <th style="width:20%;">CITY</th>
        <th style="width:20%;">ZIPCODE</th>
        <th style="width:15%;">DETAIL</th>
@@ -63,17 +64,16 @@
 				c_num = rs.getInt(1);
 			}
 			
-			String sql = "select ORDER_DATE,STATE,CITY,ZIPCODE, O_NUM from ORDERED where CUS_NUM =" + c_num + " ORDER BY O_NUM" ;
+			String sql = "select ORDER_DATE,CITY,ZIPCODE,O_NUM from ORDERED where CUS_NUM =" + c_num + " ORDER BY O_NUM" ;
 			rs = stmt.executeQuery(sql);
 			int count = 1;
 			while(rs.next()) {
 				String date = rs.getString(1);
-				String state = rs.getString(2);
 				String city = rs.getString(3);
 				String zip = rs.getString(4);
 				String num = rs.getString(5);
 
-				out.println("<tr> <td>"+count+ "</td><td>" +date+"</td><td>" +state + "</td><td>" + city + "</td><td>" + zip 
+				out.println("<tr> <td>"+count+ "</td><td>" +date+"</td><td>" + city + "</td><td>" + zip 
 						+ "</td><td><input type = 'submit' value = '"+num+"' name = 'num'> </td></tr>");
 				count++;
 			}
