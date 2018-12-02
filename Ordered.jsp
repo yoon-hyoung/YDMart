@@ -69,9 +69,9 @@
 			int count = 1;
 			while(rs.next()) {
 				String date = rs.getString(1);
-				String city = rs.getString(3);
-				String zip = rs.getString(4);
-				String num = rs.getString(5);
+				String city = rs.getString(2);
+				String zip = rs.getString(3);
+				String num = rs.getString(4);
 
 				out.println("<tr> <td>"+count+ "</td><td>" +date+"</td><td>" + city + "</td><td>" + zip 
 						+ "</td><td><input type = 'submit' value = '"+num+"' name = 'num'> </td></tr>");
