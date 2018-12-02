@@ -116,14 +116,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" >
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-  
+  <form action = "inputCart.jsp" method = "post">
                                 <!-- Top menu on small screens -->
                                 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
                                     <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
                                     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
                                 </header>
 
-<form action = "inputCart.jsp" method = "post">
+
 
 <hr><br/><br/>
 <h1><% out.print(name); %></h1>
@@ -173,9 +173,20 @@
 
 <!상품장바구니에 넣기>
 <input type=hidden name="Item" value="<%=item%>"></input>
+<div class = "" align = "right">
+<select name = "amount">
+       <option value="1">1</option>
+       <option value="2">2</option>
+       <option value="3">3</option>
+       <option value="4">4</option>
+       <option value="5">5</option>
+       <option value="6">6</option>
+       <option value="7">7</option>
+</select>
+
 <a href="inputCart.jsp"><span><input type = submit class="w3-right w3-large" value = "Input it in my Cart √"> </span></a>
 </form>
-
+</div>
 </div>
 </body>
 </html>
