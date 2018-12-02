@@ -124,19 +124,19 @@ function check() {
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
     <div class="w3-rest">
 <select name = "City">
-       <option value="Seoul">Seoul</option>
-       <option value="Incheon">Incheon</option>
-       <option value="Gyeongi">Gyeongi</option>
-       <option value="Gwagnwon">Gwagnwon</option>
-       <option value="Chungchugn">Chungchugn</option>
-       <option value="Daegu">Daegu</option>
-       <option value="Ulsan">Ulsan</option>
-       <option value="Gyeongsang">Gyeongsang</option>
-       <option value="Busan">Busan</option>
-       <option value="Jeonla">Jeonla</option>
-       <option value="Sejong">Sejong</option>
-       <option value="Daejun">Daejun</option>
-       <option value="Jeju">Jeju</option>       
+       <option value="Seoul">0</option>
+       <option value="Incheon">1</option>
+       <option value="Gyeongi">2</option>
+       <option value="Gwagnwon">3</option>
+       <option value="Chungchugn">4</option>
+       <option value="Daegu">5</option>
+       <option value="Ulsan">6</option>
+       <option value="Gyeongsang">7</option>
+       <option value="Busan">8</option>
+       <option value="Jeonla">9</option>
+       <option value="Sejong">10</option>
+       <option value="Daejun">11</option>
+       <option value="Jeju">12</option>       
 </select>   
 </div>
 </div>
