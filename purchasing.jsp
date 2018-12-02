@@ -4,7 +4,7 @@
 <%@ page import ="java.lang.Integer, java.util.ArrayList" %>
 
 <script>
-function check() {
+function check() {	
 	  if(fr.Name.value == "") {
 	    alert("Input name");
 	    fr.Name.focus();
@@ -25,6 +25,7 @@ function check() {
 		    fr.Phone.focus();
 		    return false;
 	  }
+
 }
 </script>
 
@@ -122,8 +123,22 @@ function check() {
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
     <div class="w3-rest">
-      <input class="w3-input w3-border" name="City" type="text" placeholder="City">
-    </div>
+<select name = "City">
+       <option value="Seoul">Seoul</option>
+       <option value="Incheon">Incheon</option>
+       <option value="Gyeongi">Gyeongi</option>
+       <option value="Gwagnwon">Gwagnwon</option>
+       <option value="Chungchugn">Chungchugn</option>
+       <option value="Daegu">Daegu</option>
+       <option value="Ulsan">Ulsan</option>
+       <option value="Gyeongsang">Gyeongsang</option>
+       <option value="Busan">Busan</option>
+       <option value="Jeonla">Jeonla</option>
+       <option value="Sejong">Sejong</option>
+       <option value="Daejun">Daejun</option>
+       <option value="Jeju">Jeju</option>       
+</select>   
+</div>
 </div>
 
 <div class="w3-row w3-section">
