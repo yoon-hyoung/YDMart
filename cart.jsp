@@ -10,9 +10,9 @@
 <body>
 <form action="charging.jsp" class="w3-container w3-card-4" method = "post">
   <!-- Top menu on small screens -->
-                                <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-                                    <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
-                                    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+                  <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+                  <div class="w3-bar-item w3-padding-24 w3-wide"><a href = "main.jsp" style="text-decoration:none">SYD MART</a></div>
+              <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
                                 </header>  
 
 <%
@@ -59,19 +59,21 @@
 				c_num = rs.getInt(1);
 			}
 			
-			sql1 = "select I_NUM from SH_ITEML where SH_NUM = " + c_num;	
+			/*고객의 장바구니에 있는 item number 가져오*/
+			sql1 = "select I_NUM, COUNT(I_NUM) from SH_ITEML where SH_NUM = " + c_num +" GROUP BY I_NUM";	
 			
 			rs = null;
 			rs = stmt.executeQuery(sql1);
 
 			ArrayList<Integer> list = new ArrayList<Integer>();
-			
+			ArrayList<Integer> nlist = new ArrayList<Integer>();
 			int count = 0;
 			int temp = 0;
 			while(rs.next()) {
 				//String sql2 = "select NAME, PRICE from ITEM where I_NUM = " + rs.getInt(count++);
 				temp = rs.getInt(1);
 				list.add(temp);
+				nlist.add(rs.getInt(2));
 				count++;
 			}
 			
@@ -79,26 +81,28 @@
 		//	sql2 = "select NAME, PRICE from ITEM where I_NUM = " + list.get(0);
 		
 			for(int i = 0; i < count; i++) {
-				sql2 = "select NAME, PRICE, TOTAL_STOCK from ITEM where I_NUM = " + list.get(i);
+				sql2 = "select NAME, PRICE, TOTAL_STOCK, COUNT(NAME) from ITEM where I_NUM = " + list.get(i);
 				rs = stmt.executeQuery(sql2);
 				while(rs.next()) {
 					String name = rs.getString(1);
-					String price = rs.getString(2);
+					String price = rs.getString(2);		
 					if(rs.getInt(3) == 0) {
-						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won)</label></p>");
+						out.println("<p><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"+ nlist.get(i)+"</label></p>");
 					}
 					else {
 						out.println("<p> <input class='w3-radio' type='checkbox' name='item'"
-					 	+ " value='"+ list.get(i) +"' checked><label>" + name + " &nbsp;&nbsp; "+ price+" (won)</label></p>");
+					 	+ " value='"+ list.get(i) +"' checked><label>" + name + " &nbsp;&nbsp; "+ price+" (won) &nbsp;&nbsp"
+						+ nlist.get(i) + "</label></p>");
 					}
 				}
 			}
 					
 %>
- 
- 
- <a href = "charging.jsp" ><input type = "submit" value = "Orderd"></input></a>
- 
+ <a href = "charging.jsp" ><input type = "submit" value = "Order"></input></a>
+</form>
+
+<form action = "change_cart.jsp" method = "post">
+<a href = "change_cart.jsp" ><input type = "submit" value = "Modify Cart"></input></a>
 </form>
 
 </body>
