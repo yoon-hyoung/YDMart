@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.sql.*" %>
-<%@ page import ="java.lang.Integer, java.util.ArrayList" %>
+<%@ page import ="java.lang.Integer, java.util.ArrayList, java.text.SimpleDateFormat, java.util.Date" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,14 +22,33 @@
 	String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			System.out.println("after forName");
 			con = DriverManager.getConnection(url, "root","ekdms1234");
-			System.out.println("DBms connection success");
-			System.out.println("DB load success");
 		} catch(Exception e) {
 			System.out.println("DB load fail" + e.toString());
 		}
-	
+		
+		/*Set near city*/
+		String near_city[] = new String[15];
+		
+		/*case 1*/
+		near_city[1] = "Seoul";
+		near_city[2] = "Incheon";
+		near_city[3] = "Gyeongi";
+		near_city[4] = "Gwagnwon";
+		/*case 2*/
+		near_city[5] = "Choongchugn";
+		near_city[6] = "Daegu";
+		near_city[7] = "Ulsan";
+		near_city[8] = "Gyeongsang";
+		near_city[9] = "Busan";
+		/*case 3*/
+		near_city[10] = "Jeolla";
+		near_city[11] = "Sejong";
+		near_city[12] = "Daejun";
+		near_city[13] = "Gwangju";
+		/*case 4*/
+		near_city[14] = "jeju";
+
 		  /*get ID*/
 		  String Id = null; //initializie to 0
 		  Id = (String)session.getAttribute("ID");
@@ -46,7 +65,7 @@
 				
 			/*get delivery information*/
 			String name = request.getParameter("Name");
-			String zip = request.getParameter("Zip");
+			String zip = request.getParameter("Zipcode");
 			String city = request.getParameter("City");
 			String phone = request.getParameter("Phone");
 			
@@ -54,8 +73,6 @@
 			System.out.println(zip);
 			System.out.println(city);
 			System.out.println(phone);
-
-
 			
 			/*GET C_NUM from CUSTOMER TABLE*/
 			Statement stmt = con.createStatement();
@@ -94,8 +111,73 @@
 				stmt.executeUpdate(sql1);
 			}
 			
-		}
+			int cur = Integer.parseInt(city);
+			int count = 0;
+			int dir = 1;
+			boolean check = false;
+			for(int i = 0; i < itemList.length; i++) {
+				/*재고 있는 매장 찾기*/
+				while(!check){
+					sql1 = "SELECT STOCK FROM POSSESS_ITEM WHERE R_NUM = " + cur + " AND ITEM_NUM = " + itemList[i];
+					stmt = con.prepareStatement(sql1);
+					System.out.println(sql1);
+					rs = stmt.executeQuery(sql1);
+					/*retailer has stock*/
+					if(rs.next()) {
+						if(rs.getInt(1) >= act.get(i)) {
+							check = true;
+						}
+					}
+					else {
+						cur += dir;
+						count++;						
+						if(cur > 14){
+							cur = 1;
+						}
+					}
+				}
+				
+				//System.out.println(cur);
+				//System.out.println(count);
+
+				/*decrease retailer stock*/
+				sql1 = "Update POSSESS_ITEM SET STOCK = STOCK-" + act.get(i) + " WHERE R_NUM = "+ cur + " AND ITEM_NUM = " + itemList[i] + ";";
+				stmt = con.prepareStatement(sql1);
+				stmt.executeUpdate(sql1);
+
+				/*decrease total stock*/
+				sql1 = "Update ITEM SET TOTAL_STOCK = TOTAL_STOCK-" + act.get(i) + " WHERE I_NUM = "+ itemList[i] + ";";
+				stmt = con.prepareStatement(sql1);
+				stmt.executeUpdate(sql1);
+			}
 			
+			/*data for get today date*/
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			/*add to ordered*/
+			sql1 = "INSERT INTO ORDERED(CUS_NUM , RETAILER_NUM , ORDER_DATE , CITY, ZIPCODE) VALUE(" + c_num + "," + cur + ", '" + sdf.format(d) + "' , '"
+					+ city + "', " + zip+ ");"; 
+			stmt = con.prepareStatement(sql1);
+			stmt.executeUpdate(sql1);	
+			
+			/*get O_NUM for add to ord_list*/
+			int onum = 0;
+			sql1 = "SELECT MAX(O_NUM) FROM ORDERED";
+			rs = stmt.executeQuery(sql1);
+			while(rs.next()) {
+				onum = rs.getInt(1);
+			}
+
+			/*add to ord_list*/
+			for(int i = 0; i < itemList.length; i++) {
+				sql1 = "INSERT INTO ORD_ITEML VALUE (" + onum + ", " + itemList[i] + ", " + (i+1) + ");";
+				stmt = con.prepareStatement(sql1);
+				stmt.executeUpdate(sql1);	
+			}
+
+			out.println("<script>alert('Item purchasing success !'); location.href='cart.jsp'</script>");
+	}
 %>
 </form>
 
