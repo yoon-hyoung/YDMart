@@ -7,26 +7,28 @@ Make my shopping mall **web page**!!
 Working with **database** (jsp and mysql)
 
 ## Content
-**Login**
+***Login***
 
-**Logout**
+***Logout***
 
 ### Customer Mode
-**Sign Up**
+***Sign Up***
 
-**Cart**
+***Cart***
 
-**Order**
+***Order***
 
-**Search Item**
+***Search Item***
 
-**See Ordered List**
+***See Ordered List***
 
 ### Manager Mode
-**Stock Manage**
+***Stock Manage***
+
 Manage your shopping mall stock.
 
-**See Revenue**
+***See Revenue***
+
 You can see the revenue by total,month,date.
 
 
