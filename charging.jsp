@@ -120,7 +120,9 @@
 			int cur = Integer.parseInt(city);
 			int count = 0;
 			int dir = 1;
+			int temp = 0;
 			boolean check = false;
+			if(cur == 13) dir = -1;
 			for(int i = 0; i < itemList.length; i++) {
 				/*재고 있는 매장 찾기*/
 				while(!check){
@@ -128,37 +130,94 @@
 					stmt = con.prepareStatement(sql1);
 					System.out.println(sql1);
 					rs = stmt.executeQuery(sql1);
+					while(rs.next())
+						temp = rs.getInt(1);
 					/*retailer has stock*/
-					if(rs.next()) {
-						if(rs.getInt(1) >= act.get(i)) {
+					if(temp > act.get(i)) {
 							check = true;
-						}
+							System.out.println("Success1");
 					}
 					else {
 						cur += dir;
-						count++;						
+						count++;
+						/*Do not fall in infinite loop!!*/
+						if(count > 28){
+							break;
+						}
 						if(cur > 14){
 							dir = -1;
 						}
 						else if(cur < 1){
-							System.out.println("err");
-							break;
+							dir = +1;
+							cur = 14;
+						}
+					}
+				}
+				if(count > 28) {
+					cur = Integer.parseInt(city);
+					dir = 1;
+					int ct = act.get(i);
+					count = 0;
+					if(cur == 13) dir = -1;
+					/*재고 있는 매장 찾기*/
+					while(!check){
+						sql1 = "SELECT STOCK FROM POSSESS_ITEM WHERE R_NUM = " + cur + " AND ITEM_NUM = " + itemList[i];
+						stmt = con.prepareStatement(sql1);
+						System.out.println(sql1);
+						rs = stmt.executeQuery(sql1);
+						while(rs.next())
+							temp = rs.getInt(1);
+						rs.close();
+						/*retailer has stock*/
+						System.out.println(temp);
+						if(temp > 0) {
+							System.out.println("in");
+							if(ct > temp)
+								ct -= temp;	
+							else {
+								temp = ct;
+								ct = 0;
+							}
+							sql1 = "Update POSSESS_ITEM SET STOCK = STOCK-" + temp + " WHERE R_NUM = "+ cur + " AND ITEM_NUM = " + itemList[i] + ";";
+							stmt = con.prepareStatement(sql1);
+							stmt.executeUpdate(sql1);
+							if(ct == 0){
+								System.out.println("Success2");
+								break;
+							}
+							System.out.println(ct);
+						}
+						else {								
+							cur += dir;
+							count++;
+							/*Do not fall in infinite loop!!*/
+							if(count > 28){
+								/*err*/
+								try{con.rollback();}catch(SQLException sql){}
+								out.println("<script>alert('Occurred unexpected error !'); location.href='cart.jsp'</script>");
+								break;
+							}
+							if(cur > 14){
+								dir = -1;
+							}
+							else if(cur < 1){
+								dir = +1;
+								cur = 14;
+							}
 						}
 					}
 				}
 				
-				//System.out.println(cur);
-				//System.out.println(count);
-
+				else{
 				/*decrease retailer stock*/
 				sql1 = "Update POSSESS_ITEM SET STOCK = STOCK-" + act.get(i) + " WHERE R_NUM = "+ cur + " AND ITEM_NUM = " + itemList[i] + ";";
-				stmt = con.prepareStatement(sql1);
 				stmt.executeUpdate(sql1);
-
+				}
+			
 				/*decrease total stock*/
 				sql1 = "Update ITEM SET TOTAL_STOCK = TOTAL_STOCK-" + act.get(i) + " WHERE I_NUM = "+ itemList[i] + ";";
-				stmt = con.prepareStatement(sql1);
 				stmt.executeUpdate(sql1);
+				
 			}
 			
 			/*data for get today date*/
