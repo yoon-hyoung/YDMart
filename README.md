@@ -75,7 +75,7 @@ You can see the revenue by total,month,date.
 
 ### 1.CUSTUMER TABLE
 
- +CREATE INDEX ix_ITEM ON ITEM (NAME);
+    CREATE INDEX ix_ITEM ON ITEM (NAME);
  
 : jsp코드를 생성하면서 parameter로 item name 을 전달하는 경우가 빈번히 일어났다. 
 이렇게 받은 NAME 파라미터로 PK인 I_NUM을 검색하기도 하였고 이 값을 토대로 가격 등의 정보를 조회하기도 하였다.
@@ -83,7 +83,7 @@ You can see the revenue by total,month,date.
 
 ### 2.CUSTOMER TABLE
 
- +CREATE INDEX ix_CUSTOMER ON CUSTOMER (ID);
+    CREATE INDEX ix_CUSTOMER ON CUSTOMER (ID);
  
 : 초기 테이블을 생성하였을 때 고객의 관리를 편하게 하기 위해서 C_ID라는 INT형 필드를 생성하였다. 
 하지만 jsp코드를 실제로 작성하는 과정에서는 ID를 인자로 받아 session값으로 지정하게 되었다. 
@@ -91,7 +91,7 @@ You can see the revenue by total,month,date.
 
 ### 3.ORDERED TABLE
 
- +CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
+    CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
  
 : ORDERED 테이블의 기본키는 O_NUM이다. 이는 ORDERED의 관리를 편하게 해주고 이를 마트에서 활용하는 정보로 쓸 경우, 유용하다.
 하지만 ORDERED는 고객과 아이템 사이에 존재하는 일종의 관계라고 볼 수도 있다. (우리는 테이블로 구현하였으나 경우에 따라 관계 테이블로 만들 수 있다고 생각한다.)
