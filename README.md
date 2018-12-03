@@ -71,7 +71,7 @@ You can see the revenue by total,month,date.
 ![2018-12-03 22-25-17](https://user-images.githubusercontent.com/30612084/49377794-6b080e80-f74e-11e8-805d-25adf4c45410.png)
 
 
-## index for search
+### index for search
 1.CUSTUMER TABLE
 CREATE INDEX ix_ITEM ON ITEM (NAME);
 : jsp코드를 생성하면서 parameter로 item name 을 전달하는 경우가 빈번히 일어났다. 
@@ -91,9 +91,9 @@ CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
 그렇게 때문에 CUSTOMER 테이블과의 참조가 빈번히 일어나게 되었고 이를 위해 CUSTOMER NUMBER를 대상으로 한 인덱스를 구성하게 되었다.
 
 ## shopping mall function
-* 처리된 것은 추가과제를 구현 한 것임.
+  *  처리된 것은 추가과제를 구현 한 것임.
 
-1. member function
+### 1. member function
   1) 회원가입
   
     +필수정보 (이름, 아이디, 비밀번호, 주소(도시, 우편주소), 전화번호) 를 입력하지 않은 경우 가입 불가
@@ -123,7 +123,8 @@ CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
     +관리자 계정 로그인시 관리자 페이지로 연결
     +관리자 계정 ID : SYD    PW : SYD
     
-2. item function
+### 2. item function
+
   1) 아이템 목록 전체 열람 가능
   
     +로그인 이후 아이템 열람 가능
@@ -153,7 +154,8 @@ CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
     +장바구니 페이지에서 상품 구입을 위한 선택이 불가
     +주문 창으로 진행 할 수 없도록 처리하였음
   
-3. shopping cart function
+### 3. shopping cart function
+
   1) 고객별 카트 회원가입시 생성
     
     +회원 가입시 고객 카트 생성
@@ -174,7 +176,8 @@ CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
     +자신이 원하는 아이템 카트에서 선택후 구입 가능
     +재고 부족한 상품은 주문 불가
     
-4. purchase function
+### 4. purchase function
+
   1) 장바구니에서 구입 가능
   
   2) 자신의 주문 내역 확인 가능 - 주문 내역 선택시 주문 세부 정보 확인 가능
@@ -196,7 +199,8 @@ CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
   
     +구입한 아이템들은 자동으로 장바구니에서 삭제됨
    
-5. manager function
+### 5. manager function
+
   1) 관리자 ID, PW 로 로그인시 진행 가능 (ID : SYD, PW : SYD )
     
     +패스워드 일치하지 않을 경우 이용 불가
