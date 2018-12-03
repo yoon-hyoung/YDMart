@@ -22,6 +22,7 @@ tomcat v8.5
 
 ```git clone https://github.com/yoon-hyoung/YDMart.git```
 
+Starting with ```http://localhost:8080/test/login_input.jsp```
 
 ## Content
 ***Login***
