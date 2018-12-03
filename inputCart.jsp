@@ -50,7 +50,7 @@ int c_num = 0;
 	/*get SH_ITEML count*/
 	rs = null;
 	
-	String sql2 = "SELECT COUNT(*) FROM SH_ITEML WHERE SH_NUM = " + c_num;
+	String sql2 = "SELECT MAX(L_NUM) FROM SH_ITEML WHERE SH_NUM = " + c_num;
 	System.out.println(sql2);
 
 	rs = stmt.executeQuery(sql2);
