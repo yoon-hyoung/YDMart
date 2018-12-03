@@ -37,10 +37,16 @@ Working with **database** (jsp and mysql)
 
 Manage your shopping mall stock.
 
+![2018-12-03 22-24-59](https://user-images.githubusercontent.com/30612084/49377775-62173d00-f74e-11e8-934e-1d8edaeaca01.png)
+
+
 ***See Revenue***
 
 You can see the revenue by total,month,date.
 
+![2018-12-03 22-25-06](https://user-images.githubusercontent.com/30612084/49377789-693e4b00-f74e-11e8-8abc-4a839992e33a.png)
+
+![2018-12-03 22-25-17](https://user-images.githubusercontent.com/30612084/49377794-6b080e80-f74e-11e8-805d-25adf4c45410.png)
 
 
 ## shopping mall function
