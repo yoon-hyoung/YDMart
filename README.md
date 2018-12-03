@@ -29,6 +29,7 @@ Starting with ```http://localhost:8080/test/login_input.jsp```
 ![2018-12-03 22-47-48](https://user-images.githubusercontent.com/30612084/49377427-80c90400-f74d-11e8-9858-dc354a8cd57b.png)
 
 ***Logout***
+
 ![2018-12-03 22-11-16](https://user-images.githubusercontent.com/30612084/49377482-a48c4a00-f74d-11e8-9d28-7c65d4503446.png)
 
 ### Customer Mode
