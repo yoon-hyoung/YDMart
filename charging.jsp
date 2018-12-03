@@ -132,7 +132,11 @@
 						cur += dir;
 						count++;						
 						if(cur > 14){
-							cur = 1;
+							dir = -1;
+						}
+						else if(cur < 1){
+							System.out.println("err");
+							break;
 						}
 					}
 				}
