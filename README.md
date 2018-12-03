@@ -1,9 +1,37 @@
-# YDMart
+# YDMart 
 
-Make my shopping mall web page (html)
-And work with database (jsp and mysql)
+## Goal
 
-shopping mall function
+Make my shopping mall **web page**!!
+
+Working with **database** (jsp and mysql)
+
+## Content
+**Login**
+
+**Logout**
+
+### Customer Mode
+**Sign Up**
+
+**Cart**
+
+**Order**
+
+**Search Item**
+
+**See Ordered List**
+
+### Manager Mode
+**Stock Manage**
+Manage your shopping mall stock.
+
+**See Revenue**
+You can see the revenue by total,month,date.
+
+
+
+## shopping mall function
 
 1. member function
 
@@ -14,3 +42,4 @@ shopping mall function
 4. purchase function
 
 5. manager function
+
