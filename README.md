@@ -8,19 +8,29 @@ Working with **database** (jsp and mysql)
 
 ## Content
 ***Login***
+![2018-12-03 22-47-48](https://user-images.githubusercontent.com/30612084/49377427-80c90400-f74d-11e8-9858-dc354a8cd57b.png)
 
 ***Logout***
+![2018-12-03 22-11-16](https://user-images.githubusercontent.com/30612084/49377482-a48c4a00-f74d-11e8-9d28-7c65d4503446.png)
 
 ### Customer Mode
 ***Sign Up***
+![2018-12-03 21-41-39](https://user-images.githubusercontent.com/30612084/49376839-ecaa6d00-f74b-11e8-8700-ef8281266fb9.png)
+
+***Category***
+![2018-12-03 21-46-51](https://user-images.githubusercontent.com/30612084/49376917-1b284800-f74c-11e8-9a7a-ccde68609965.png)
 
 ***Cart***
+![2018-12-03 21-58-13](https://user-images.githubusercontent.com/30612084/49376963-32ffcc00-f74c-11e8-880b-65980f90a723.png)
 
 ***Order***
+![2018-12-03 21-58-35](https://user-images.githubusercontent.com/30612084/49376977-385d1680-f74c-11e8-9dd9-0019098ada08.png)
 
 ***Search Item***
+![2018-12-03 21-47-32](https://user-images.githubusercontent.com/30612084/49376925-1fecfc00-f74c-11e8-9c83-6aa664354b0c.png)
 
 ***See Ordered List***
+![2018-12-03 22-49-52](https://user-images.githubusercontent.com/30612084/49377531-c5549f80-f74d-11e8-800e-11e16bd194fa.png)
 
 ### Manager Mode
 ***Stock Manage***
