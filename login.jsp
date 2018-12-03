@@ -26,11 +26,21 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		String id = request.getParameter("Id");
 		String pw = request.getParameter("Password");
 		
-		//check input id and pw
+		/*check input id and pw*/
 		if(id == "" || pw == "") {
 			out.println("<script>alert('Input your ID and PW !'); location.href='login_input.jsp'</script>");
 		}
-		
+		/*************************************************************************************************/
+		else if(id.equals("SYD")){
+			if(pw.equals("SYD") && pw.equals("SYD")) {
+			/*manager login success*/
+				session.setAttribute("ID", id);
+				out.println("<script>alert('Manager LoginSuccess'); location.href='manager.jsp'</script>");
+			}
+			/*manager login fail*/
+			else
+				out.println("<script>alert('Manager Password Error !'); location.href='login_input.jsp'</script>");
+		}
 		//check id and pw are correct
 		String sql = "SELECT ID, PW " 
 			+ "FROM CUSTOMER"
@@ -48,11 +58,9 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 	
 	if(rs.next()) {
 		//login success
-		session.setAttribute("ID",id);
-		if(id.equals("SYD")) 
-			out.println("<script>alert('Manager LoginSuccess'); location.href='manager.jsp'</script>");
-		else
-			out.println("<script>alert('LoginSuccess'); location.href='main.jsp'</script>");
+		/**************************************************************************************/
+		session.setAttribute("ID", id);
+		out.println("<script>alert('LoginSuccess'); location.href='main.jsp'</script>");
 	}
 	else {
 		//login fail
