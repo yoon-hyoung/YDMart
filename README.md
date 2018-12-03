@@ -6,6 +6,23 @@ Make my shopping mall **web page**!!
 
 Working with **database** (jsp and mysql)
 
+## To Start
+
+***Setting***
+
+Ubuntu 18.04.1 LTS
+
+mysql  Ver 14.14 Distrib 5.7.24, for Linux (x86_64) using  EditLine wrapper
+
+OpenJDK Runtime Environment (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4)
+
+OpenJDK 64-Bit Server VM (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4, mixed mode)
+
+tomcat v8.5
+
+```git clone https://github.com/yoon-hyoung/YDMart.git```
+
+
 ## Content
 ***Login***
 ![2018-12-03 22-47-48](https://user-images.githubusercontent.com/30612084/49377427-80c90400-f74d-11e8-9858-dc354a8cd57b.png)
