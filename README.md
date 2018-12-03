@@ -71,9 +71,9 @@ You can see the revenue by total,month,date.
 ![2018-12-03 22-25-17](https://user-images.githubusercontent.com/30612084/49377794-6b080e80-f74e-11e8-805d-25adf4c45410.png)
 
 
-### index for search
+## index for search
 
-# 1.CUSTUMER TABLE
+### 1.CUSTUMER TABLE
 
  +CREATE INDEX ix_ITEM ON ITEM (NAME);
  
@@ -81,7 +81,7 @@ You can see the revenue by total,month,date.
 이렇게 받은 NAME 파라미터로 PK인 I_NUM을 검색하기도 하였고 이 값을 토대로 가격 등의 정보를 조회하기도 하였다.
 따라서 빈번히 검색이 일어나는 필드인 NAME 필드를 대상으로 인덱스를 생성하게 되었다.
 
-# 2.CUSTOMER TABLE
+### 2.CUSTOMER TABLE
 
  +CREATE INDEX ix_CUSTOMER ON CUSTOMER (ID);
  
@@ -89,7 +89,7 @@ You can see the revenue by total,month,date.
 하지만 jsp코드를 실제로 작성하는 과정에서는 ID를 인자로 받아 session값으로 지정하게 되었다. 
 이로인해 다른 테이블을 참조하기 위해서 추가적인 검색이 필요하게 되었고 이를 위해 ID를 대상으로 한 인덱스를 생성하게 되었다.
 
-# 3.ORDERED TABLE
+### 3.ORDERED TABLE
 
  +CREATE INDEX ix_ORDERED ON ORDERED (CUS_NUM);
  
