@@ -98,6 +98,12 @@
 				}
 			}
 			
+		/*transaction*/	
+		try{
+			
+			/*set autocommit false*/
+			con.setAutoCommit(false);
+			
 			/*SHOPPINGBAG TOTAL ITEM UPDATE*/
 			sql1 = "Update SHOPPINGBAG SET TOTAL_INUM = TOTAL_INUM-"+ total_inum +" WHERE C_NUM = " + c_num + ";"; 
 			stmt = con.prepareStatement(sql1);
@@ -179,7 +185,15 @@
 				stmt = con.prepareStatement(sql1);
 				stmt.executeUpdate(sql1);	
 			}
-
+			
+			/*commit*/
+			con.commit();
+		}
+		catch(SQLException sqle){
+			//if exception occurred -> rollback
+			if(con != null) try{con.rollback();}catch(SQLException sql){}
+		}
+			con.setAutoCommit(true);
 			out.println("<script>alert('Item purchasing success !'); location.href='cart.jsp'</script>");
 	}
 %>

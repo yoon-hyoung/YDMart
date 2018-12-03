@@ -14,10 +14,7 @@ Connection conn = null;
 String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			System.out.println("after forName");
 			conn = DriverManager.getConnection(url, "root","ekdms1234");
-			System.out.println("DBms connection success");
-			System.out.println("DB load success");
 		} catch(Exception e) {
 			System.out.println("DB load fail" + e.toString());
 		}
@@ -106,6 +103,11 @@ String url = "jdbc:mysql://localhost:3306/SYDMart?serverTimezone = UTC";
 		/*make cart*/
 		query = "Insert into SHOPPINGBAG values (" + c_num  +", 0)";
 		stmt.executeUpdate(query);
+		
+		session.setAttribute("ID",id);
+		
+		pstmt.close();
+		conn.close();
 		
 		out.println("<script>location.href='signupSuccess.jsp'</script>");
 		}
