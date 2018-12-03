@@ -74,7 +74,7 @@ You can see the revenue by total,month,date.
 
 ## index for search
 
-### 1.CUSTUMER TABLE
+### 1.ITEM TABLE
 
     CREATE INDEX ix_ITEM ON ITEM (NAME);
  
