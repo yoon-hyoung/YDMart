@@ -19,6 +19,7 @@
 	/*get ID value*/
 	String Id = null; //initializie to 0
 	Id = (String)session.getAttribute("ID");
+	System.out.println(Id);
 	
 	/*connect to DB*/
 	Connection con = null;
@@ -33,7 +34,7 @@
 	Statement stmt = con.createStatement();
 	ResultSet rs = null;
 	
-	String sql = "SELECT C_NUM, AGE, GENDER FROM CUSTOMER WHERE ID = " + Id;
+	String sql = "SELECT C_NUM, AGE, GENDER FROM CUSTOMER WHERE ID = '" + Id +"'";
 	rs = stmt.executeQuery(sql);
 	
 	int cnum = 0, age = 0;
