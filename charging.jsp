@@ -132,6 +132,7 @@
 					rs = stmt.executeQuery(sql1);
 					while(rs.next())
 						temp = rs.getInt(1);
+					System.out.println("temp");
 					/*retailer has stock*/
 					if(temp > act.get(i)) {
 							check = true;
@@ -174,7 +175,8 @@
 							System.out.println("in");
 							if(ct > temp)
 								ct -= temp;	
-							else {
+							/*************************************************************************/
+							else if(temp == ct) {
 								temp = ct;
 								ct = 0;
 							}
@@ -207,7 +209,6 @@
 						}
 					}
 				}
-				
 				else{
 				/*decrease retailer stock*/
 				sql1 = "Update POSSESS_ITEM SET STOCK = STOCK-" + act.get(i) + " WHERE R_NUM = "+ cur + " AND ITEM_NUM = " + itemList[i] + ";";
