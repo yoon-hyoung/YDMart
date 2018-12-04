@@ -17,4 +17,7 @@ Mysql Transaction 처리
 그리고 작업이 끝나면 기본 설정대로 auto commit을 활성화 해주었다.
 (con.setAutoCommit(true); 부분)
 
+
+*** 한 컴퓨터에서 동시 사용자가 로그인 하기 위해서는 다른 웹 페이지 ( ex. 사파리, 크롬 등)에서 메인이 실행되어야한다. ***
+
  
