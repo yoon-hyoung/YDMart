@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="w3-content" style="max-width:1200px">
+<form action="manager_item1.jsp">
        <%              
                                 //get ID value
   									  String Id = null; //initializie to 0
@@ -48,33 +49,35 @@
                                     	<table class="w3-table-all w3-margin-top" id="myTable">
                                         <tr>
                                             <th style="width:40%;">Name</th>
-                                            <th style="width:10%;">Stock</th>
-                                            
-                                            <th style="width:20%;">Plus</th>
-                                            <th style="width:10%;">check</th>
+                                            <th style="width:10%;">Stock</th>   
+                                            <th style="width:20%;">order</th>
                                         </tr>
                                       <%       
-                                            String sql = "select NAME, TOTAL_STOCK from ITEM ORDER BY TOTAL_STOCK";
+                                            String sql = "select NAME, TOTAL_STOCK,I_NUM  from ITEM ORDER BY TOTAL_STOCK";
                                             Statement stmt = con.createStatement();
                                             ResultSet rs = stmt.executeQuery(sql);
-                                            
+                                            String item=null;
                             				while(rs.next()) {
                             					String name = rs.getString(1);
                             					String stock = rs.getString(2);
-            									//session.setAttribute("item", item);
-            									//out.println("<input type = 'hidden' value = '" + item + "' name = 'item'/>");
+                            					item= rs.getString(3);
+                            					
                             					out.println("<tr><td>"+ name + "</td><td>" + stock + "</td>");
-                            					out.println("<td><input type='text' name='plus'></td>");
-                            					out.println("<td><button >+</button></td></tr>");
+                            				
+                            					//////
+
+				
+                            				out.println("<td><input type='submit' value="+item+" name='Item'></td>");
+
+%>
+   	<% 
                             				}
-											out.println("</table>");
+										
 										
                                             %>
-                                   </div>                                                               
-                           
-                            </div>
-                                              
-                                
+                                 </table>
+                                 </div>
+       </form>
     <!--Profit section -->
 <div class="w3-container">
 
@@ -89,8 +92,8 @@ stmt = con.createStatement();
 rs = stmt.executeQuery(sql);
 
 while(rs.next()) {
-	String a = rs.getString(1);
-	int sale = Integer.parseInt(a);
+	String c = rs.getString(1);
+	int sale = Integer.parseInt(c);
 	out.println(" <div class='w3-container w3-green w3-center' style='width:");
 	out.println(sale/6213+"%'>");
 	out.println(sale+"WON");

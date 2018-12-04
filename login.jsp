@@ -1,69 +1,92 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!-- import JDBC package -->
-<!-- [IMPORTANT] Complete your scripting. -->
-<%@ page language ="java" import ="java.text.*,java.sql.*" %>
+<%@ page contentType="text/html;charset=euc-kr"
+             import="cookie.LoginManager"%>
+<%@ page language="java" 
+    pageEncoding="UTF-8"%>
+<%@ page import ="java.sql.*" %>
+<%@ page import ="java.lang.Integer" %>
+
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
-<title>COMP322003/004: Databases</title>
-</head>
-<body>
-	<h2>Lab #9: Oracle-Tomcat Conjunction</h2>
-<%
-	String serverIP = "localhost";
-	String strSID = "orcl";
-	String portNum = "1521";
-	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
-	String user = "knu";
-	String pass = "comp322";
-	//Complete your code.
-	Connection conn;
-	PreparedStatement pstmt;
-	ResultSet rs;
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	conn=DriverManager.getConnection(url,user,pass);
-	
-	String query = "SELECT * " 
-			+ "FROM customer"
-			+ " WHERE EXISTS"
-			+ " SELECT * FROM customer WHERE"
-			+ " C_id =" + request.getParameter("Id")
-			+ " And PW =" +  request.getParameter("Password");
-		
-	System.out.println(query);
-	pstmt = conn.prepareStatement(query);
-	rs=pstmt.executeQuery();
-%>
-    <h4>------ Q1 Result ------</h4>
-<% 
+<title>login_manager</title>
 
-	// Complete your code.
-	out.println(request.getParameter("Id"));
-	out.println(request.getParameter("Password"));
-	
-	ResultSetMetaData rsmd;
-	int cnt;
-	out.println("<table border=\"1\">");
-	rsmd =rs.getMetaData();
-	cnt = rsmd.getColumnCount();
-	for(int i=1;i<=cnt;i++){
-		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
-	}
-	while(rs.next()){
-		out.println("<tr>");
-		for(int i=1;i<=cnt;i++){
-			out.println("<td>"+rs.getString(i)+"</td>");
+
+<body>
+ 
+<%
+//db connect
+Connection con = null;
+String url = "jdbc:mysql://localhost:3306/SYDMART?serverTimezone = UTC";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("after forName");
+			con = DriverManager.getConnection(url, "knu","comp322");
+			System.out.println("DBms connection success");
+			System.out.println("DB load success");
+		} catch(Exception e) {
+			System.out.println("DB load fail" + e.toString());
 		}
-		out.println("</tr>");
+		
+		//get id and pw
+		String id = request.getParameter("Id");
+		String pw = request.getParameter("Password");
+		
+		
+		//check input id and pw
+		if(id == "" || pw == "") {
+			out.println("<script>alert('Input your ID and PW !'); location.href='login_input.jsp'</script>");
+		}
+		/*************************************************************************************************/
+		else if(id.equals("SYD")){
+			if(pw.equals("SYD") && pw.equals("SYD")) {
+			/*manager login success*/
+				session.setAttribute("ID", id);
+				out.println("<script>alert('Manager LoginSuccess'); location.href='manager.jsp'</script>");
+			}
+			/*manager login fail*/
+			else
+				out.println("<script>alert('Manager Password Error !'); location.href='login_input.jsp'</script>");
+		}
+	
+		//check id and pw are correct
+		String sql = "SELECT ID, PW " 
+			+ "FROM CUSTOMER"
+			+ " WHERE EXISTS"
+			+ " (SELECT * FROM CUSTOMER WHERE"
+			+ " ID = '" + id +"'"
+			+ " And PW = '" + pw + "')";
+
+	Statement stmt = null;
+	
+	stmt = con.createStatement();
+	stmt.executeQuery(sql);
+	
+	
+	ResultSet rs = null;
+	rs = stmt.executeQuery(sql);
+	
+	if(rs.next()) {
+		//login success
+		LoginManager loginManager = LoginManager.getInstance();
+		
+		 if(!loginManager.isUsing(id)){
+            loginManager.setSession(session, id);
+            session.setAttribute("ID", id);
+            response.sendRedirect("main.jsp");
+		}
+		else{
+			// 이미 로그인중
+			out.println("<script>alert('Id already login!'); location.href='login_input.jsp'</script>");
+		}
 	}
-	out.println("</table>");
-	pstmt.close();
-	conn.close();
-	
-	
-	
+	else {
+		//login fail
+		out.println("<script>alert('Id or Password Error !'); location.href='login_input.jsp'</script>");
+	}
+
+	stmt.close();
+	con.close();
+
 %>
 
 </body>

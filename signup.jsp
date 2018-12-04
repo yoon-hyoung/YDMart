@@ -1,75 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!-- import JDBC package -->
-<!-- [IMPORTANT] Complete your scripting. -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page language ="java" import ="java.text.*,java.sql.*" %>
+<%@ page language ="java" import ="java.lang.Integer" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>COMP322003/004: Databases</title>
+<meta charset = "UTF-8">
+<title>SYD sign-up management Page</title>
 </head>
 <body>
-	<h2>Lab #9: Oracle-Tomcat Conjunction</h2>
 <%
-	String serverIP = "localhost";
-	String strSID = "orcl";
-	String portNum = "1521";
-	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
-	String user = "knu";
-	String pass = "comp322";
-	//Complete your code.
-	Connection conn;
-	PreparedStatement pstmt;
-	ResultSet rs;
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	conn=DriverManager.getConnection(url,user,pass);
-	
-	String query = "INSERT INTO CUSTOMER(C_ID,PW,ZIPCODE,NAME,PHONENUM,CITY,GENDER,AGE,JOB)" 
-			+ " VALUES('" + request.getParameter("Id")+"'"
-			+ ",'" + request.getParameter("Password")+"',"
-			+  request.getParameter("Zipcode")
-			+ ",'" + request.getParameter("Name") + "',"
-			+  request.getParameter("Phone")
-			+ ",'" + request.getParameter("City") + "'"
-			+ ",'"+ request.getParameter("Gender") + "',"
-			+  request.getParameter("Age")
-			+ ",'"+ request.getParameter("Job")
-			+ "')";
-	
-	out.println(query);
-	
-	pstmt = conn.prepareStatement(query);
-	rs=pstmt.executeQuery();
-%>
-    <h4>------ Q1 Result ------</h4>
-<% 
-
-	// Complete your code.
-	out.println(request.getParameter("Id"));
-	out.println(request.getParameter("Password"));
-	out.println("customer signup success!");
-	
-	ResultSetMetaData rsmd;
-	int cnt;
-	out.println("<table border=\"1\">");
-	rsmd =rs.getMetaData();
-	cnt = rsmd.getColumnCount();
-	for(int i=1;i<=cnt;i++){
-		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
-	}
-	while(rs.next()){
-		out.println("<tr>");
-		for(int i=1;i<=cnt;i++){
-			out.println("<td>"+rs.getString(i)+"</td>");
+Connection conn = null;
+String url = "jdbc:mysql://localhost:3306/SYDMART?serverTimezone = UTC";
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			System.out.println("after forName");
+			conn = DriverManager.getConnection(url, "knu","comp322");
+			System.out.println("DBms connection success");
+			System.out.println("DB load success");
+		} catch(Exception e) {
+			System.out.println("DB load fail" + e.toString());
 		}
-		out.println("</tr>");
-	}
-	out.println("</table>");
+
+		Statement pstmt = conn.createStatement();
+		ResultSet rs = null;
+		
+		String query = "INSERT INTO CUSTOMER (ID, PW, ZIPCODE, NAME, PHONENUM, CITY, AGE, GENDER, JOB)" 
+				+" VALUES( ";
+		
+		//get value
+		String id = request.getParameter("Id");
+		query += "'"+id+"',";
+		String pw = request.getParameter("Password");
+		query += "'"+pw+"'";
+		String zip = request.getParameter("Zipcode");
+			query += ","+zip;
+		String name = request.getParameter("Name");
+		query += ",'"+name+"'";
+		String phone = request.getParameter("Phone");
+		if(phone == "")
+			query += ",null";
+		else
+			query += ",'"+phone+"'";
+		String city = request.getParameter("City");
+			query += ",'"+city+"'";
+		String age = request.getParameter("Age");
+		if(age == "")
+			query += ",null";
+		else
+			query += ","+age;
+		String gender =  request.getParameter("Gender") ;
+		if(gender == "")
+			query += ",null";
+		else
+			query += ",'"+gender+"'";
+		String job = request.getParameter("Job");
+		if(job == "")
+			query += ",null";
+		else
+			query += ",'"+job+"'";
+		
+		query += ");";
+
+		
+		//같은 아이디 있는지 확인 
+		String query1 = "select * from CUSTOMER where ID = " + "'" +id + "'";
+		
+		pstmt = conn.prepareStatement(query1);
+		rs = pstmt.executeQuery(query1);
+		
+		if(rs.next()) {
+			out.println("<script>alert('ID duplicate'); location.href='signup_input.jsp'</script>");
+		}
+		else if(id =="" || pw == "" || name == "" || phone == "" || zip == "" || city == "")
+		{
+			out.println("<script>alert('Input essential info'); location.href='signup_input.jsp'</script>");
+		}
+		else {
+			/*sign-up success*/
+		out.println(query);
+		Statement stmt = conn.prepareStatement(query);
+		stmt.executeUpdate(query);
+		
+			/*Get C_NUM*/
+		stmt = conn.createStatement();
+		String sql1 = "select C_NUM FROM CUSTOMER WHERE ID = '" + id +"'";
+		stmt.executeQuery(sql1);
+		rs = null;
+		rs = stmt.executeQuery(sql1);
+
+		int c_num = 0;
+		if(rs.next()) {
+			c_num = rs.getInt(1);
+		}
+		
+		/*make cart*/
+		query = "Insert into SHOPPINGBAG values (" + c_num  +", 0)";
+		stmt.executeUpdate(query);
+		
+		out.println("<script>location.href='signup_output.jsp'</script>");
+		}
+	
 	pstmt.close();
 	conn.close();
 	
 %>
 
 </body>
-</html>
