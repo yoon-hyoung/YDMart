@@ -174,7 +174,7 @@
 							System.out.println("in");
 							if(ct > temp)
 								ct -= temp;	
-							else {
+							else if(temp == ct) {
 								temp = ct;
 								ct = 0;
 							}
