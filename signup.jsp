@@ -69,7 +69,7 @@ String url = "jdbc:mysql://localhost:3306/SYDMART?serverTimezone = UTC";
 		pstmt = conn.prepareStatement(query1);
 		rs = pstmt.executeQuery(query1);
 		
-		if(rs.next()) {
+		if(rs.next() || id.equals("SYD") {
 			out.println("<script>alert('ID duplicate'); location.href='signup_input.jsp'</script>");
 		}
 		else if(id =="" || pw == "" || name == "" || phone == "" || zip == "" || city == "")
